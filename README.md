@@ -11,16 +11,20 @@ Hook-based auto mode plugin for Claude Code. Automatically approves tool calls i
 
 ## Installation
 
+### From marketplace (recommended)
+
+```bash
+# 1. 添加 marketplace
+/plugin marketplace add yanghan-cyber/auto-mode
+
+# 2. 安装插件（永久，自动加载）
+/plugin install auto-mode@auto-mode
+```
+
 ### Local install (development)
 
 ```bash
-claude --plugin-dir D:/workspace/auto-mode
-```
-
-### From marketplace
-
-```bash
-/plugin install auto-mode@claude-plugins-official
+claude --plugin-dir /path/to/auto-mode
 ```
 
 ## Usage
