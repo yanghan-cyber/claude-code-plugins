@@ -1,9 +1,21 @@
 #!/bin/bash
 # Auto-mode hook for Claude Code (no jq dependency)
-# Toggle: touch ~/.claude/.auto-mode (enable) / rm ~/.claude/.auto-mode (disable)
+# Supports two levels (project takes priority):
+#   Project: {PWD}/.claude/.auto-mode
+#   User:    ~/.claude/.auto-mode
 
-TOGGLE="$HOME/.claude/.auto-mode"
-if [ ! -f "$TOGGLE" ]; then
+PROJECT_TOGGLE="$PWD/.claude/.auto-mode"
+USER_TOGGLE="$HOME/.claude/.auto-mode"
+TOGGLE=""
+LOG_DIR=""
+
+if [ -f "$PROJECT_TOGGLE" ]; then
+    TOGGLE="$PROJECT_TOGGLE"
+    LOG_DIR="$PWD/.claude/auto-mode/logs"
+elif [ -f "$USER_TOGGLE" ]; then
+    TOGGLE="$USER_TOGGLE"
+    LOG_DIR="$HOME/.claude/auto-mode/logs"
+else
     exit 0
 fi
 
@@ -21,7 +33,6 @@ TOOL=$(echo "$INPUT" | grep -o '"tool_name"[[:space:]]*:[[:space:]]*"[^"]*"' | h
 # Extract tool_input for logging
 TOOL_INPUT=$(echo "$INPUT" | grep -o '"tool_input"[[:space:]]*:[[:space:]]*{[^}]*}' | head -1 | sed 's/.*"tool_input"[[:space:]]*:[[:space:]]*//')
 
-LOG_DIR="$HOME/.claude/auto-mode/logs"
 LOG_FILE="$LOG_DIR/auto-mode.log"
 MAX_SIZE=10485760  # 10MB
 MAX_FILES=3

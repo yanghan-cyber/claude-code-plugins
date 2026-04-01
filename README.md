@@ -5,9 +5,10 @@ Hook-based auto mode plugin for Claude Code. Automatically approves tool calls i
 ## Features
 
 - **Auto-approve tool calls** — Skip permission prompts in `acceptEdits` mode
+- **Two-level toggle** — Project-level (per-project) and user-level (global) control
 - **Dangerous command protection** — Blocks `rm`, `taskkill`, `shutdown`, `mkfs`, etc.
 - **Logging** — All decisions recorded with rotation (3 files, 10MB each)
-- **Toggle control** — `/auto-mode on|off` slash command
+- **Toggle control** — `/auto-mode on|off` slash command with `--global` flag
 
 ## Installation
 
@@ -35,9 +36,20 @@ claude --plugin-dir /path/to/auto-mode
 
 1. Switch to **acceptEdits** permission mode (press `Shift+Tab`)
 2. Toggle auto mode:
-   - `/auto-mode on` — Enable auto-approve
-   - `/auto-mode off` — Disable auto-approve
+   - `/auto-mode on` — Enable for current project
+   - `/auto-mode off` — Disable for current project
+   - `/auto-mode on --global` — Enable for all projects (user-level)
+   - `/auto-mode off --global` — Disable for all projects
    - `/auto-mode` — Show current status
+
+### Toggle Levels
+
+| Level | Toggle File | Scope | Priority |
+|-------|-------------|-------|----------|
+| Project | `{project}/.claude/.auto-mode` | Current project only | High |
+| User | `~/.claude/.auto-mode` | All projects | Low |
+
+Project-level toggle takes priority over user-level. If both exist, the project level is used.
 
 ## How It Works
 
@@ -45,14 +57,15 @@ claude --plugin-dir /path/to/auto-mode
 |-----------|------|---------|
 | Hook config | `hooks/hooks.json` | Registers PreToolUse hook |
 | Hook script | `hooks/auto-mode.sh` | Core logic: check toggle, permission, danger commands |
-| Toggle script | `scripts/auto-mode-toggle.sh` | Manages `~/.claude/.auto-mode` toggle file |
+| Toggle script | `scripts/auto-mode-toggle.sh` | Manages toggle files |
 | Slash command | `commands/auto-mode.md` | `/auto-mode` user command |
 
 ### Flow
 
 ```
 Tool call → PreToolUse hook
-  → Check toggle file exists? No → normal permission flow
+  → Check project toggle exists? Yes → use project level
+  → Check user toggle exists? No → normal permission flow
   → Check permission_mode == acceptEdits? No → normal permission flow
   → Check dangerous command? Yes → BLOCKED + logged
   → Otherwise → ALLOW + logged
@@ -60,8 +73,10 @@ Tool call → PreToolUse hook
 
 ## Configuration
 
-- **Toggle file**: `~/.claude/.auto-mode` (created/removed by `/auto-mode`)
-- **Log directory**: `~/.claude/auto-mode/logs/` (auto-created)
+- **Project toggle**: `{project}/.claude/.auto-mode`
+- **User toggle**: `~/.claude/.auto-mode`
+- **Project logs**: `{project}/.claude/auto-mode/logs/`
+- **User logs**: `~/.claude/auto-mode/logs/`
 - **Log rotation**: 3 files max, 10MB each
 
 ## Blocked Commands
