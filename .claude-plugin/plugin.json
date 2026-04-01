@@ -3,8 +3,18 @@
   "description": "Hook-based auto mode for Claude Code - auto-approve tool calls with dangerous command protection and logging",
   "version": "1.0.0",
   "author": {
-    "name": "yanghan"
+    "name": "yanghan",
+    "url": "https://github.com/yanghan-cyber"
   },
+  "homepage": "https://github.com/yanghan-cyber/auto-mode#readme",
+  "repository": "https://github.com/yanghan-cyber/auto-mode",
   "license": "MIT",
-  "keywords": ["hooks", "auto-mode", "permissions", "automation"]
+  "keywords": [
+    "hooks",
+    "auto-mode",
+    "permissions",
+    "automation",
+    "acceptEdits",
+    "dangerous-command-protection"
+  ]
 }
