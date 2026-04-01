@@ -1,0 +1,15 @@
+{
+  "description": "Auto-mode PreToolUse hook - auto-approves tool calls in acceptEdits mode with dangerous command protection",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/auto-mode.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
