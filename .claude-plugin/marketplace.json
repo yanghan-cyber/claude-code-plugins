@@ -1,8 +1,8 @@
 {
   "name": "auto-mode",
   "owner": {
-    "name": "yanghan",
-    "email": "yanghan@noreply.github.com"
+    "name": "yanghan-cyber",
+    "email": "yanghan1107@outlook.com"
   },
   "metadata": {
     "description": "Claude Code auto-mode plugin marketplace"
@@ -15,9 +15,9 @@
         "repo": "yanghan-cyber/auto-mode"
       },
       "description": "Hook-based auto mode for Claude Code - auto-approve tool calls with dangerous command protection and logging",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
-        "name": "yanghan"
+        "name": "yanghan-cyber"
       },
       "license": "MIT",
       "keywords": ["hooks", "auto-mode", "permissions", "automation"]
