@@ -2,11 +2,10 @@
 name: auto-mode
 description: Toggle hook-based auto mode on/off (only works in acceptEdits permission mode)
 disable-model-invocation: true
-argument-hint: [on|off] [--global]
 allowed-tools: Bash(*)
 ---
 
-!`bash "${CLAUDE_PLUGIN_ROOT}/scripts/auto-mode-toggle.sh" $ARGUMENTS`
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/auto-mode-toggle.sh $ARGUMENTS`
 
 Supports two toggle levels (project takes priority over user):
 
