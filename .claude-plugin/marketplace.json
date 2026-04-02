@@ -1,25 +1,26 @@
 {
-  "name": "auto-mode",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+
+  "name": "yanghan-claudecode-plugins",
   "owner": {
     "name": "yanghan-cyber",
     "email": "yanghan1107@outlook.com"
   },
+  "description": "yanghan-cyber claude code plugins marketplace",
   "metadata": {
-    "description": "Claude Code auto-mode plugin marketplace"
+    "description": "yanghan-cyber claude code plugins marketplace"
   },
   "plugins": [
     {
       "name": "auto-mode",
-      "source": {
-        "source": "github",
-        "repo": "yanghan-cyber/auto-mode"
-      },
+      "source": "./plugins/auto-mode",
       "description": "Hook-based auto mode for Claude Code - auto-approve tool calls with dangerous command protection and logging",
       "version": "1.0.1",
       "author": {
         "name": "yanghan-cyber"
       },
       "license": "MIT",
+      "category": "permissions",
       "keywords": ["hooks", "auto-mode", "permissions", "automation"]
     }
   ]
