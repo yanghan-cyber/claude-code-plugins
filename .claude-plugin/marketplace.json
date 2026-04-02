@@ -1,14 +1,14 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
 
-  "name": "yanghan-claudecode-plugins",
+  "name": "yanghan-plugins",
   "owner": {
     "name": "yanghan-cyber",
     "email": "yanghan1107@outlook.com"
   },
-  "description": "yanghan-cyber claude code plugins marketplace",
+  "description": "Claude Code plugins marketplace by yanghan-cyber",
   "metadata": {
-    "description": "yanghan-cyber claude code plugins marketplace"
+    "description": "Claude Code plugins marketplace by yanghan-cyber"
   },
   "plugins": [
     {

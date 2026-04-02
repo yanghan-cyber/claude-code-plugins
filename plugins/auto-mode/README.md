@@ -17,7 +17,7 @@ Hook-based auto mode plugin for Claude Code. Automatically approves tool calls i
 In Claude Code, register the marketplace first:
 
 ```
-/plugin marketplace add yanghan-cyber/auto-mode
+/plugin marketplace add yanghan-plugins
 ```
 
 Then install the plugin from this marketplace:
